@@ -4,8 +4,8 @@
 *  No part of this assignment has been copied manually or electronically from any other source
 *  (including web sites) or distributed to other students.
 * 
-*  Name: Ron Agady, Student ID: #168836211 Date: 2024-01-16
-*  Cyclic Link: https://weak-ruby-starfish-kilt.cyclic.app/
+*  Name: Ron Agady, Student ID: #168836211 Date: 2024-02-02
+*  Cyclic Link: https://teal-bright-calf.cyclic.app/
 *
 ********************************************************************************/ 
 
@@ -21,12 +21,30 @@ const db = new CompaniesDB();
 const app = express();
 const HTTP_PORT = process.env.PORT || 8080;
 
-app.use(express.json());
 app.use(cors());
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use('/js', express.static(__dirname + '/js'));
+app.use('/css', express.static(__dirname + '/css'));
+var corsMiddleware = function(req, res, next) {
+    res.header('Access-Control-Allow-Origin', 'http://localhost:3000/', 'http://127.0.0.1:5500/'); //replace localhost with actual host
+    res.header('Access-Control-Allow-Methods', 'OPTIONS, GET, PUT, PATCH, POST, DELETE');
+    res.header('Access-Control-Allow-Headers', 'Content-Type, X-Requested-With, Authorization');
+
+    next();
+}
+
+app.use(bodyParser.urlencoded({
+  extended: true
+}));
+app.use(bodyParser.json())
+app.use(corsMiddleware);
+
+
 
 // Deliver a json message
 app.get('/', (req, res) => {
-    res.json({ message: `API Listening` });
+  res.sendFile(path.join(__dirname, "/index.html"))
 });
 
 // C - Add new company
