@@ -10,13 +10,12 @@
 ********************************************************************************/ 
 
 
-// Setup
 const express = require('express');
 const cors = require('cors');
 const dotenv = require('dotenv').config();
 const path = require('path');
 const bodyParser = require('body-parser');
-const CompaniesDB = require('./modules/companiesDB.js')
+const CompaniesDB = require('./modules/companiesDB.js');
 const db = new CompaniesDB();
 const app = express();
 const HTTP_PORT = process.env.PORT || 8080;
@@ -26,8 +25,9 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use('/js', express.static(__dirname + '/js'));
 app.use('/css', express.static(__dirname + '/css'));
+
 var corsMiddleware = function(req, res, next) {
-    res.header('Access-Control-Allow-Origin', 'http://localhost:3000/', 'http://127.0.0.1:5500/'); //replace localhost with actual host
+    res.header('Access-Control-Allow-Origin', 'http://localhost:3000', 'http://127.0.0.1:5500'); //replace localhost with actual host
     res.header('Access-Control-Allow-Methods', 'OPTIONS, GET, PUT, PATCH, POST, DELETE');
     res.header('Access-Control-Allow-Headers', 'Content-Type, X-Requested-With, Authorization');
 
@@ -40,9 +40,6 @@ app.use(bodyParser.urlencoded({
 app.use(bodyParser.json())
 app.use(corsMiddleware);
 
-
-
-// Deliver a json message
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, "/index.html"))
 });
@@ -115,11 +112,11 @@ app.use((req, res) => {
 });
 
 db.initialize(process.env.MONGODB_CONN_STRING)
-    .then(() => {
-        app.listen(3000, ()=>{
-            console.log(`server listening on port 3000`);
-        });
-    })
-    .catch((err) => {
-        console.log(err);
+  .then(() => {
+    app.listen(HTTP_PORT, () => {
+      console.log(`server listening on: ${HTTP_PORT}`);
     });
+  })
+  .catch((err) => {
+    console.log(err);
+  });
