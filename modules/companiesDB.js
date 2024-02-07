@@ -73,13 +73,11 @@ const companySchema = new Schema({
   "partners": []
 });
 
-module.exports = class companiesDB {
+module.exports = class CompaniesDB {
   constructor() {
-    // We don't have a `Company` object until initialize() is complete
     this.Company = null;
   }
 
-  // Pass the connection string to `initialize()`
   initialize(connectionString) {
     return new Promise((resolve, reject) => {
       const db = mongoose.createConnection(
