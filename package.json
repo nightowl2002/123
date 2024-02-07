@@ -9,14 +9,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com/qryseymour/WEB422Assignment2.git"
+    "url": "git+ssh://git@github.com/nightowl2002/123.git"
   },
-  "author": "Ron Agady",
+  "author": "Jatin",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/qryseymour/WEB422Assignment2/issues"
+    "url": "https://github.com/nightowl2002/123/issues"
   },
-  "homepage": "https://github.com/qryseymour/WEB422Assignment2#readme",
+  "homepage": "https://github.com/nightowl2002/123#readme",
   "dependencies": {
     "body-parser": "^1.20.2",
     "cors": "^2.8.5",
