@@ -116,8 +116,8 @@ app.use((req, res) => {
 
 db.initialize(process.env.MONGODB_CONN_STRING)
     .then(() => {
-        app.listen(HTTP_PORT, ()=>{
-            console.log(`server listening on: ${HTTP_PORT}`);
+        app.listen(3000, ()=>{
+            console.log(`server listening on port 3000`);
         });
     })
     .catch((err) => {
